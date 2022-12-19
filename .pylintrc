@@ -1,0 +1,8 @@
+[MASTER]
+init-hook=
+    from os.path import dirname, join
+    from glob import glob
+    from pylint.config import find_pylintrc
+    from site import addsitedir
+    site_packages_paths = glob(join(dirname(find_pylintrc()), '**', '*venv', '**', 'site-packages'), recursive=True)
+    for site_packages_path in site_packages_paths: addsitedir(site_packages_path)
